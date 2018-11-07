@@ -4,8 +4,8 @@ Sigma = 1
 Var = ${N}
 Var2 = ${Mu}
 Var3 = ${Sigma}
-CXX=g++
-CXX_2=python3
+CXX = g++
+CXX_2 = python3
 
 
 .PHONY: all #se utiliza este target para que corra todos los comandos que se desean 
@@ -19,15 +19,15 @@ output: main.x
 	rm *.x
 	
 
-main.x: sampling.cpp
-	$(CXX) -o main.x sampling.cpp
+main.x: prueba.cpp
+	$(CXX) -o main.x prueba.cpp
 
 Histogram: datos.txt
 	$(CXX_2) Read_data.py datos.txt $(Var2) $(Var3)
 	rm *.txt
+main2.x: sampling.cpp
+	$(CXX) -o main2.x sampling.cpp
 
 
 clean:
-	rm *.x
 	rm *.pdf
-	rm *.txt
