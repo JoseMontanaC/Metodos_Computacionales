@@ -15,4 +15,9 @@ Se corre compila el código [cuenta.cpp](./cuenta.cpp), el cual primero lee el a
 Resultados del programa
 =======================
 
-Al ver las gráficas ![Grafica del tiempo](https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio26/Grafica_tiempo.png) y ![Gráfica del tiempo total](https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio26/Graf_tiempo_total.png) se ve en la primera que al parecer el tiempo promedio que toma una partición dada disminuye en función de esta partición, sin embargo vemos que de la segunda gráfica que el tiempo total que demora el algoritmo no es menor a medida que se aumenta la partición, con lo cual se encuentra que la partición ideal sería de 20, para así disminuir el tiempo de computo promedio y además conseguir que en total el algoritmo tome menos tiempo.
+Al ver las gráficas [Grafica del tiempo](https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio26/Grafica_tiempo.png) y [Gráfica del tiempo total](https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio26/Graf_tiempo_total.png) se ve en la primera que al parecer el tiempo promedio que toma una partición dada disminuye en función de esta partición, sin embargo vemos que de la segunda gráfica que el tiempo total que demora el algoritmo no es menor a medida que se aumenta la partición, con lo cual se encuentra que la partición ideal sería de 20, para así disminuir el tiempo de computo promedio y además conseguir que en total el algoritmo tome menos tiempo.
+
+![Grafica del tiempo](https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio26/Grafica_tiempo.png)
+
+
+![Gráfica del tiempo total](https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio26/Graf_tiempo_total.png)
