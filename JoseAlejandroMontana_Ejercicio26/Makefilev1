@@ -18,17 +18,6 @@ main.x: cuenta.cpp
 
 Plot: Tiempos.txt
 	$(CXX_2) plot_times.py
-Repo:
-	git add cuenta.cpp
-	git commit -m "Programa que cuenta las veces que un patron aparece"
-	git add conteo.txt
-	git add tiempo_total.txt
-	git commit -m "Archivos de los conteos y del tiempo que dura el algoritmo sin dividir el archivo."
-	git add Tiempos.txt
-	git add plot_times.py
-	git add Grafica_tiempo.pdf
-	git commit -m "Archivos de gráficas con sus respectivas figuras"
-	git push -u origin master
 
 
 clean:
