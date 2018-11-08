@@ -165,7 +165,7 @@ int main(int argc, char **argv)
 	  double duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
 	  std::cout<<division<<"\t"<<duration<<std::endl;
 	  // tiempo += duration<std::chrono::nanoseconds>.count();
-	  tiempo += std::chrono::duration_cast<std::chrono::nanoseconds>( t2 - t1 ).count();
+	  tiempo += std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
 	}
       // std::cout<<dur<<std::endl;
       
