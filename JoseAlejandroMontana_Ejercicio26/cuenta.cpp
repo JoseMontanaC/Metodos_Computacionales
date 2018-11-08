@@ -108,8 +108,8 @@ int main(int argc, char **argv)
   inFile.close();
   cuenta.close();
   tiempo.close();
-
-  std::vector<int> d_list = {10,20,50,100};
+  
+  std::vector<int> d_list = {10,20,30,40,50,60,70,80,90,100};
   for (auto division : d_list)
     {
       // Dividir el string
