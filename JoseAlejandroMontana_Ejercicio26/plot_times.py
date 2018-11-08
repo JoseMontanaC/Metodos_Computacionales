@@ -13,10 +13,12 @@ for i in range(len(div)):
 X=[]
 Y=[]
 Y_err=[]
+yy=[]
 for i in sorted(D.keys()):
     Y.append(np.mean(D[i]))
     X.append(i)
     Y_err.append(np.std(D[i]))
+    yy.append(np.sum(D[i]))
  
 X=np.array(X)
 Y=np.array(Y)
@@ -30,4 +32,12 @@ plt.title("Tiempo del algoritmo en funcion de la particion")
 plt.xlabel("Particion")
 plt.ylabel("Tiempo de computo")
 plt.savefig("Grafica_tiempo.pdf")
+plt.show()
+plt.figure(figsize=(9,5))
+plt.plot(X,yy,color="slateblue")
+plt.scatter(X,yy,color="firebrick")
+plt.title("Tiempo total del algoritmo en funcion de la particion")
+plt.xlabel("Particion")
+plt.ylabel("Tiempo total de computo")
+plt.savefig("Graf_tiempo_total.pdf")
 plt.show()
