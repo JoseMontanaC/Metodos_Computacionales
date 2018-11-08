@@ -13,8 +13,7 @@ int main(int argc, char **argv)
   inFile.open(argv[1]);
   cuenta.open(argv[2]);
   tiempo.open(argv[3]);
-  // inFile.open("Num.txt");
-  // inFile.open("Pi_25.txt");
+  
   //Check error
   if(inFile.fail())
     {
@@ -22,18 +21,7 @@ int main(int argc, char **argv)
       exit(1);
     }
   std::string line;
-  // if(inFile.is_open())
-  //   {
-  //     while(std::getline(inFile,line))
-  // 	{
-  // 	  std::istringstream iss(line);
-  // 	  // std::cout<<line<<std::endl;
-  // 	  // std::cout<<sizeof(line)<<" "<<line.size()<<"  "<< line.length()<<std::endl;
-	  
-  // 	  // inFile >> output;
-  // 	  // std::cout<<output;
-  // 	}
-  //   }
+ 
   while(!inFile.eof())
     {
       inFile >> line;
@@ -52,8 +40,6 @@ int main(int argc, char **argv)
   int C_5=0.0;
   for(int ii=0; ii<line.size();ii++)
     {
-      // std::cout<<line[ii]<<std::endl;
-      // std::cout<<ii;
       if(ii+patron_1.size()>line.size())
   	{
   	  break;
@@ -82,11 +68,9 @@ int main(int argc, char **argv)
   	    {
   	      C_5 += 1;
   	    }
-  	  // std::cout<<intento<<std::endl;
 	  
   	}
       intento.clear();
-      // std::cout<<std::endl;
     }
   std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
   // double duration = std::chrono::duration_cast<std::chrono::nanoseconds>( t2 - t1 ).count();
@@ -98,35 +82,32 @@ int main(int argc, char **argv)
   cuenta<<C_4<<std::endl;
   cuenta<<C_5<<std::endl;
   tiempo<<duration<<std::endl;
-  // std::cout<<patron_1<<"  "<<C_1<<std::endl;
-  // std::cout<<patron_2<<"  "<<C_2<<std::endl;
-  // std::cout<<patron_3<<"  "<<C_3<<std::endl;
-  // std::cout<<patron_4<<"  "<<C_4<<std::endl;
-  // std::cout<<patron_5<<"  "<<C_5<<std::endl;
-  // std::cout<<duration<<std::endl;
+  
   
   inFile.close();
   cuenta.close();
   tiempo.close();
-  
+
+  // Dividimos line en distintas porciones
   std::vector<int> d_list = {10,20,30,40,50,60,70,80,90,100};
   for (auto division : d_list)
     {
       // Dividir el string
       int r=line.size()/division;
       double tiempo=0.0;
+      std::string intento;
+      int C_1=0.0;
+      int C_2=0.0;
+      int C_3=0.0;
+      int C_4=0.0;
+      int C_5=0.0;
       for(int kk=0; kk<division;kk++)
 	{
 	  std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
-	  std::string intento;
-	  int C_1=0.0;
-	  int C_2=0.0;
-	  int C_3=0.0;
-	  int C_4=0.0;
-	  int C_5=0.0;
+	  
 	  for(int ii = kk*r;ii<(kk+1)*r;ii++)
 	    {
-	  
+	      
 	      if(ii+patron_1.size()>(kk+1)*r)
 		{
 		  break;
@@ -155,21 +136,17 @@ int main(int argc, char **argv)
 		    {
 		      C_5 += 1;
 		    }
-		  // std::cout<<intento<<std::endl;
 		  
 		}
 	      intento.clear();
-	      // std::cout<<std::endl;
 	    }         
 	  std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 	  double duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
 	  std::cout<<division<<"\t"<<duration<<std::endl;
-	  // tiempo += duration<std::chrono::nanoseconds>.count();
 	  tiempo += std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
 	}
-      // std::cout<<dur<<std::endl;
       
     }
-      
+  
   return 0;
 }
