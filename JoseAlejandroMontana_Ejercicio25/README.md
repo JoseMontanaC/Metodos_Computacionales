@@ -13,4 +13,4 @@ Como Correr el makefile
 	```
 3. El codigo [sampling.cpp](./sampling.cpp) efectua lo mismo que [prueba.cpp](./prueba.cpp) salvo que la implementación de las funciones que se usan en cada caso es distinta, una es usando arreglos de la librería vector y el otro es usando punteros junto a arreglos primitivos.
 
-4. La dirección del repositorio es ![aqui](https://github.com/JoseMontanaC/Metodos_Computacionales/tree/master/JoseAlejandroMontana_Ejercicio)
+4. La dirección del repositorio es [aqui](https://github.com/JoseMontanaC/Metodos_Computacionales/tree/master/JoseAlejandroMontana_Ejercicio)
