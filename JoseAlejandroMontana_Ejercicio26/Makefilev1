@@ -1,0 +1,35 @@
+CXX = g++
+CXX_2 = python3
+Flags = -std=c++11
+
+.PHONY: all #se utiliza este target para que corra todos los comandos que se desean 
+
+all: todo
+
+todo: output Plot
+
+output: main.x
+	./main.x Pi.txt conteo.txt tiempo_total.txt  > Tiempos.txt
+	rm *.x
+	
+
+main.x: cuenta.cpp
+	$(CXX) $(Flags) -o main.x cuenta.cpp
+
+Plot: Tiempos.txt
+	$(CXX_2) plot_times.py
+Repo:
+	git add cuenta.cpp
+	git commit -m "Programa que cuenta las veces que un patron aparece"
+	git add conteo.txt
+	git add tiempo_total.txt
+	git commit -m "Archivos de los conteos y del tiempo que dura el algoritmo sin dividir el archivo."
+	git add Tiempos.txt
+	git add plot_times.py
+	git add Grafica_tiempo.pdf
+	git commit -m "Archivos de gráficas con sus respectivas figuras"
+	git push -u origin master
+
+
+clean:
+	rm *.pdf conteo.txt tiempo_total.txt Tiempos.txt
