@@ -13,3 +13,9 @@ do
     cd ..
 done
 rm Main.x
+
+# carpetas=Part_*
+# for i in $carpetas
+# do
+#     git add ./$i/tiempos.txt
+# done
