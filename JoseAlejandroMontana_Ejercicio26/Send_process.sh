@@ -3,16 +3,22 @@ carpetas=Part_*
 for i in $carpetas
 do
     cd $i
-    archivos=*.txt
+    rm Run_code.sh
+    cp ../Run_code.sh ./
+    rm tiempos.txt
+    archivos=corte_*
     echo "Empieza el analisis del tiempo de la particion" $i
     for j in $archivos
     do
-    	../Main.x $j > tiempos.txt
+    	../Main.x $j >> tiempos.txt
+	# echo "Haciendo el archivo" $j
     done
+    bash Run_code.sh
     # rm a.out
     cd ..
 done
 rm Main.x
+
 
 # carpetas=Part_*
 # for i in $carpetas
