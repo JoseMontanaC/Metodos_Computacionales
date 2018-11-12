@@ -7,12 +7,12 @@
 int main(int argc, char **argv)
 {
   std::ifstream inFile;
-  std::ofstream cuenta;
-  std::ofstream tiempo;
+  // std::ofstream cuenta;
+  // std::ofstream tiempo;
   
   inFile.open(argv[1]);
   // cuenta.open(argv[2]);
-  // tiempo.open(argv[3]);
+  // tiempo.open(argv[2]);
   
   //Check error
   if(inFile.fail())
@@ -74,15 +74,15 @@ int main(int argc, char **argv)
     }
   std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
   // double duration = std::chrono::duration_cast<std::chrono::nanoseconds>( t2 - t1 ).count();
-  // double duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
-  double duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+  double duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+  // double duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
   // cuenta<<C_1<<std::endl;
   // cuenta<<C_2<<std::endl;
   // cuenta<<C_3<<std::endl;
   // cuenta<<C_4<<std::endl;
   // cuenta<<C_5<<std::endl;
   std::cout<<duration<<std::endl;
-  
+  // tiempo<<duration<<std::endl;
   inFile.close();
   // cuenta.close();
   // tiempo.close();
