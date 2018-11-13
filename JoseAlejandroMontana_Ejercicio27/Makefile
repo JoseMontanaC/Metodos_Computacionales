@@ -8,8 +8,8 @@ all: todo
 todo: output
 
 output: Hello.x MPI_Send_Recv.x
-	$(CXX_2) -np 2 	Hello.x
-	$(CXX_2) -np 2 	MPI_Send_Recv.x
+	$(CXX_2) -np 20 	Hello.x
+	$(CXX_2) -np 20 	MPI_Send_Recv.x
 
 Hello.x: Hello_world_MPI.c
 	$(CXX) -o Hello.x Hello_world_MPI.c
