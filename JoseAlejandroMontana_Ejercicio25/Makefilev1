@@ -6,6 +6,7 @@ Var2 = ${Mu}
 Var3 = ${Sigma}
 CXX = g++
 CXX_2 = python3
+Flag = -std=c++11
 
 
 .PHONY: all #se utiliza este target para que corra todos los comandos que se desean 
@@ -20,7 +21,7 @@ output: main.x
 	
 
 main.x: prueba.cpp
-	$(CXX) -o main.x prueba.cpp
+	$(CXX) $(Flag) -o main.x prueba.cpp
 
 Histogram: datos.txt
 	$(CXX_2) Read_data.py datos.txt $(Var2) $(Var3)
