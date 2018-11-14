@@ -5,7 +5,7 @@
 #include<mpi.h>
 int main (int argc, char *argv[])
 {
-  long n_points, n_part;
+  long n_points;
   double x, y, r;
   double gauss_1, gauss_2;
   double *list;
@@ -14,13 +14,16 @@ int main (int argc, char *argv[])
   int rank, size;
   FILE *out;
   char name[100];
+  int n_points_proc;
   MPI_Init (&argc, &argv);
   MPI_Comm_rank (MPI_COMM_WORLD, &rank);
   MPI_Comm_size (MPI_COMM_WORLD, &size);
-  n_part= atoi(argv[1]);
-  n_points = atoi(argv[2]);
-  mu = atof(argv[3]);
-  sigma = atof(argv[4]);
+  
+  n_points = atoi(argv[1]);
+  mu = atof(argv[2]);
+  sigma = atof(argv[3]);
+
+  n_points_proc = n_points / sizes
 
   if(!(list=malloc(n_points * sizeof(double))))
     {
@@ -42,7 +45,7 @@ int main (int argc, char *argv[])
     }
   
   
-  sprintf(name,"sample_%d.dat", jj);
+  sprintf(name,"sample_%d.dat", rank);
   
   if(!(out = fopen(name, "w")))
     {
