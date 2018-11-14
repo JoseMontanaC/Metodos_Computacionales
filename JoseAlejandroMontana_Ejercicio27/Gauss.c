@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #define PI 3.14159265358979323846264338327
+#include<mpi.h>
 int main (int argc, char *argv[])
 {
   long n_points;
