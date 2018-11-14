@@ -45,9 +45,7 @@ int main (int argc, char *argv[])
   {
     FILE *out;
     char result[50];
-    sprintf(result, "%d", jj);
-    getchar(); 
-  if(!(out = fopen("sample_"+result+".dat", "w"))){
+  if(!(out = fopen(sprintf(result, "sample_%d.dat", jj), "w"))){
     fprintf(stderr, "Problema abriendo el archivo\n");
     exit(1);
   }
