@@ -15,9 +15,11 @@ int main (int argc, char *argv[])
    MPI_Init (&argc, &argv);
    MPI_Comm_rank (MPI_COMM_WORLD, &rank);
    MPI_Comm_size (MPI_COMM_WORLD, &size);
-  n_points = atoi(argv[1]);
-  mu = atof(argv[2]);
-  sigma = atof(argv[3]);
+   n_part= atoi(argv[1]);
+  n_points = atoi(argv[2]);
+  mu = atof(argv[3]);
+  sigma = atof(argv[4]);
+  
 
 
   if(!(list=malloc(n_points * sizeof(double)))){
@@ -36,23 +38,34 @@ int main (int argc, char *argv[])
       gauss_1 = gauss_1*sigma + mu;
       list[i] = gauss_1;
   }
-  
-   for(i=0;i<n_points;i++)
-     {
-       printf("numero aleaotrio de %d of %d %f\n", rank, size,list[i]);
-     }
-  MPI_Finalize();
- // FILE *out;
- //  if(!(out = fopen("sample.dat", "w"))){
- //    fprintf(stderr, "Problema abriendo el archivo\n");
- //    exit(1);
- //  }
-  
- //  for(i=0;i<n_points;i++){
- //    fprintf(out, "%f\n", list[i]);
- //  }
 
- //  fclose(out);
+
+  
+  for(int jj=1;jj<=n_part;jj++}
+  {
+    FILE *out;
+    char result[50];
+    sprintf(result, "%d", jj);
+    getchar(); 
+  if(!(out = fopen("sample_"+result+".dat", "w"))){
+    fprintf(stderr, "Problema abriendo el archivo\n");
+    exit(1);
+  }
+   /* for(i=0;i<n_points;i++) */
+   /*   { */
+   /*     printf("numero aleaotrio de %d of %d %f\n", rank, size,list[i]); */
+   /*   } */
+   for(i=0;i<n_points;i++){
+     fprintf(out, "%f\n", list[i]);
+   }
+    fclose(out);
+  }
+  MPI_Finalize();
+ 
+  
+
+  return 0;
+ 
 }
   
 
