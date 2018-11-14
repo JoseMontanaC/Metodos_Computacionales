@@ -11,7 +11,9 @@ int main (int argc, char *argv[])
   float mu, sigma;
   long long i;
   int rank, size;
-  
+   MPI_Init (&argc, &argv);
+   MPI_Comm_rank (MPI_COMM_WORLD, &rank);
+   MPI_Comm_size (MPI_COMM_WORLD, &size);
   n_points = atoi(argv[1]);
   mu = atof(argv[2]);
   sigma = atof(argv[3]);
@@ -33,14 +35,11 @@ int main (int argc, char *argv[])
       gauss_1 = gauss_1*sigma + mu;
       list[i] = gauss_1;
   }
-   MPI_Init (&argc, &argv);
-   MPI_Comm_rank (MPI_COMM_WORLD, &rank);
-   MPI_Comm_size (MPI_COMM_WORLD, &size);
+  
    for(i=0;i<n_points;i++)
      {
        printf("numero aleaotrio de %d of %d %f\n", rank, size,list[i]);
      }
-  
   MPI_Finalize();
  // FILE *out;
  //  if(!(out = fopen("sample.dat", "w"))){
