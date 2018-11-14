@@ -12,6 +12,6 @@ archivo=np.genfromtxt(datos)
 a=archivo
 x = np.linspace(-4*sigma+mu,4*sigma+mu)
 plt.plot(x,gauss(x,mu,sigma))
-plt.hist(a,bins=50,density=True)
+plt.hist(a,bins=50,normed=True)
 plt.savefig("Histogram.pdf")
 plt.close()
