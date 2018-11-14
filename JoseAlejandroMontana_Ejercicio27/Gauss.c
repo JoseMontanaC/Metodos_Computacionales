@@ -23,7 +23,7 @@ int main (int argc, char *argv[])
   mu = atof(argv[2]);
   sigma = atof(argv[3]);
 
-  n_points_proc = n_points / sizes
+  n_points_proc = n_points / size;
 
   if(!(list=malloc(n_points * sizeof(double))))
     {
