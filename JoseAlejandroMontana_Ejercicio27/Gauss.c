@@ -5,7 +5,7 @@
 #include<mpi.h>
 int main (int argc, char *argv[])
 {
-  long n_points;
+  long n_points, n_part;
   double x, y, r;
   double gauss_1, gauss_2;
   double *list;
