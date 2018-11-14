@@ -21,7 +21,8 @@ int main (int argc, char *argv[])
     fprintf(stderr, "Problema con la reserva de memoria\n");
     exit(1);
   }
-   
+
+  
   srand48(n_points);
   for(i=0;i<n_points;i++){    
       x = drand48();
@@ -34,11 +35,12 @@ int main (int argc, char *argv[])
   }
    MPI_Init (&argc, &argv);
    MPI_Comm_rank (MPI_COMM_WORLD, &rank);
+   MPI_Comm_size (MPI_COMM_WORLD, &size);
    for(i=0;i<n_points;i++)
      {
        printf("numero aleaotrio de %d of %d %f\n", rank, size,list[i]);
      }
-  MPI_Comm_size (MPI_COMM_WORLD, &size);
+  
   MPI_Finalize();
  // FILE *out;
  //  if(!(out = fopen("sample.dat", "w"))){
@@ -51,6 +53,7 @@ int main (int argc, char *argv[])
  //  }
 
  //  fclose(out);
+}
   
 
  
