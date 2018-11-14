@@ -41,7 +41,7 @@ int main (int argc, char *argv[])
 
 
   
-  for(int jj=1;jj<=n_part;jj++}
+  for(int jj=1;jj<=n_part;jj++)
   {
     FILE *out;
     char result[50];
