@@ -44,7 +44,7 @@ int main (int argc, char *argv[])
   for(int jj=1;jj<=n_part;jj++)
   {
     FILE *out;
-    char result[50];
+    const char result[50];
   if(!(out = fopen(sprintf(result, "sample_%d.dat", jj), "w"))){
     fprintf(stderr, "Problema abriendo el archivo\n");
     exit(1);
