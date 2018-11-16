@@ -34,3 +34,5 @@ Al ver la gráficas [Grafica del error](https://github.com/JoseMontanaC/Metodos_
 <img src="https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio28/Error.png" alt="Grafica de error"/>
 </p>
 
+Con lo cual se tiene que el mínimo error se consigue cuando ![equation](https://latex.codecogs.com/gif.latex?N%3D10%5E%7B8%7D).
+
