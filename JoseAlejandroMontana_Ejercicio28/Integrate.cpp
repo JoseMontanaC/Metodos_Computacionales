@@ -4,7 +4,7 @@
 #include<random>
 #include "mpi.h"
 
-double function_to_integrate(double *x,int size);
+double function_to_integrate(double *x);
 const double lowerLimit = 0.0;
 const double upperLimit = 1.0;
 
@@ -13,13 +13,14 @@ int main(int argc, char *argv[])
   std::mt19937 generator(1);
   int dest, size, rank, tag;
   int N = atoi(argv[1]);
+  int exponente=10;
   double Lambda = 1.0;
   MPI_Status status;
   double area, punto, heigth, width, total, range, lower;
-  double lista[10];
+  double lista[exponente];
   
   // Inicializar
-  for (int ii = 0; ii < 10; ii++)
+  for (int ii = 0; ii <  exponente; ii++)
     {
       lista[ii]=0.0; 
     }
@@ -30,17 +31,20 @@ int main(int argc, char *argv[])
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
   // /* Adjust problem size for sub-process */
-  // range = (upperLimit - lowerLimit) / size;
-  // width = range / N;
+  range = (upperLimit - lowerLimit) / size;
+  width = range /(double) N;
   // lower = lowerLimit + range*rank;
 
   area=0.0;
   std::uniform_real_distribution<double> number(lowerLimit,upperLimit);
   for (int ii = 0; ii < N; ++ii)
     {
-      punto = number(generator);
-      heigth = punto*punto;
-      area += heigth/(double) (N*size);
+      for(int jj=0; jj< exponente;++jj)
+	{
+	  lista[jj]= number(generator);
+	}
+      heigth = function_to_integrate(lista);
+      area += heigth*width;
     }
 
   /* Collect info and print results */
@@ -72,10 +76,10 @@ int main(int argc, char *argv[])
   
 }
 
-double function_to_integrate(double *x,int size)
+double function_to_integrate(double *x)
 {
   double cuadratic=0.0;
-  for(int ii=0; ii<size;ii++)
+  for(int ii=0; ii<sizeof(x);ii++)
     {
       cuadratic += x[ii];
     }
