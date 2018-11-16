@@ -4,7 +4,6 @@
 #include<random>
 #include "mpi.h"
 
-double function_to_integrate(double *x);
 const double lowerLimit = 0.0;
 const double upperLimit = 1.0;
 const int exponente = 10;
@@ -42,12 +41,14 @@ int main(int argc, char *argv[])
       punto = 0.0;
       for(int jj=0; jj< exponente;++jj)
 	{
-	  lista[jj]= number(generator);
-	  // punto += number(generator);
+	  lista[jj] = number(generator);
+	  punto += lista[jj];
+
 	}
-      heigth = function_to_integrate(lista);
-      // heigth = punto*punto;
-      area += heigth/(double)(N*size);   
+      
+      heigth = punto*punto;
+      area += heigth/(double)(N*size);
+      // std::cout<<punto*punto<<"  "<<heigth<<"  "<< area<<std::endl;
     }
 
   /* Collect info and print results */
@@ -80,13 +81,4 @@ int main(int argc, char *argv[])
   
 }
 
-double function_to_integrate(double *x)
-{
-  double cuadratic=0.0;
-  for(int ii=0; ii<sizeof(x);ii++)
-    {
-      cuadratic += x[ii];
-    }
-  cuadratic = cuadratic*cuadratic;
-  return cuadratic;
-}
+
