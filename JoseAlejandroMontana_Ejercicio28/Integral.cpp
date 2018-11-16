@@ -10,17 +10,47 @@ double exponential_dist(double x, double Lambda);
 void Metropolis(double *lista, int N,double Lambda);
 // void Met(double *lista, int N,double mu, double sigma);
 /* double Int_montecarlo(int size); */
-
+const double lowerLimit = 0.0;
+const double upperLimit = 1.0;
 
 int main(int argc, char *argv[])
 {
   std::mt19937 generator(1);
+  int dest, size, rank, tag;
   int N = atoi(argv[1]);
   double Lambda = 1.0;
+  // MPI_Status status;
+  double area, at, heigth, width, total, range, lower;
+
+  /* MPI setup */
+  // MPI_Init(&argc, &argv);
+  // MPI_Comm_size(MPI_COMM_WORLD, &size);
+  // MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+  /* Adjust problem size for sub-process */
+  range = (upperLimit - lowerLimit) / size;
+  width = range / N;
+  lower = lowerLimit + range*rank;
+
+  area=0.0;
+  // std::exponential_distribution<double> exp(Lambda);
+  // for(int i = 0; i<= N;i++)
+  //   {
+  //     // std::cout<< 1/(N-1)<<std::endl;
+  //     integral +=  func_def(exp(generator))/(double) N;
+  //     // std::cout<< func_def(distribution[i])/(double)  (N-1)<<"   "<<func_def(distribution[i])/(N-1)<<"  "<<distribution[i]<<std::endl;
+      
+  // //     std
+  //   }
+  // std::cout<<"La integral es: "<<integral<<std::endl;
+  // std::cout<<"con error "<<std::fabs(integral-0.5)/0.5 *100<<"%"<<std::endl;
+  return 0;
+
+
+
+  
   // int N_prime = 5.0*N/4.0;
 
-  std::cout.precision(16);
-  std::cout.setf(std::ios::scientific);
   // ------------- Tentativa que no funciono para hacer con un montecarlo----
    // double lista[N_prime];
   // Inicializar
@@ -41,19 +71,7 @@ int main(int argc, char *argv[])
   //     // printf("%.16f \n",distribution[ii-N+length]);
   //   }
 
-  double integral=0.0;
-  std::exponential_distribution<double> exp(Lambda);
-  for(int i = 0; i< N;i++)
-    {
-      // std::cout<< 1/(N-1)<<std::endl;
-      integral +=  func_def(exp(generator))/(double)  (N-1);
-      // std::cout<< func_def(distribution[i])/(double)  (N-1)<<"   "<<func_def(distribution[i])/(N-1)<<"  "<<distribution[i]<<std::endl;
-      
-  //     std
-    }
-  std::cout<<"La integral es: "<<integral<<std::endl;
-  std::cout<<"con error "<<std::fabs(integral-0.5)/0.5 *100<<std::endl;
-  return 0;
+ 
 }
 
 
@@ -76,7 +94,7 @@ void Metropolis(double *lista, int N,double Lambda)
 {
   std::mt19937 generator(1);
   std::uniform_real_distribution<double> number(0.0,1.0);
-  std::uniform_real_distribution<double> number2(0, 10);
+  // std::uniform_real_distribution<double> number2(0, 10);
   std::normal_distribution<double> Noise(0.0, Lambda);
   double propuesta = 0.0;
   lista[0] = number(generator);
@@ -84,7 +102,7 @@ void Metropolis(double *lista, int N,double Lambda)
 
   for(int ii=1 ;ii<N; ii++)
     {
-      propuesta = number2(generator);
+      propuesta = 100.0*number(generator);
       // propuesta = lista[ii-1] + Noise(generator);
       double ratio = exponential_dist(propuesta,Lambda)/exponential_dist(lista[ii-1],Lambda);
       double r = std::min(1.0,ratio);
