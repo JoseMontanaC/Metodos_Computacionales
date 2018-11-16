@@ -21,6 +21,6 @@ Por medio del método de integrales por Montecarlo.
 Al ver la gráficas [Grafica del error](https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio28/Error.pdf) se tiene que el método parece estar funcionando a la perfección y como es de esperarse, el porcentaje de error disminuye en función del numero de puntos utilizado.
 
 <p align="center">
-<img src="https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio28/Error.png">
+<img src="https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio28/Error.png" alt="Grafica de error">
 </p>
 
