@@ -7,13 +7,13 @@
 double function_to_integrate(double *x);
 const double lowerLimit = 0.0;
 const double upperLimit = 1.0;
+const int exponente = 10;
 
 int main(int argc, char *argv[])
 {
   std::mt19937 generator(1);
   int dest, size, rank, tag;
   int N = atoi(argv[1]);
-  int exponente=10;
   double Lambda = 1.0;
   MPI_Status status;
   double area, punto, heigth, width, total, range, lower;
@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
 
   area=0.0;
   std::uniform_real_distribution<double> number(lowerLimit,upperLimit);
+  
   for (int ii = 0; ii < N; ++ii)
     {
       for(int jj=0; jj< exponente;++jj)
@@ -57,7 +58,8 @@ int main(int argc, char *argv[])
   	  MPI_Recv(&area, 1, MPI_DOUBLE, src, tag, MPI_COMM_WORLD, &status);
   	  total += area;
   	}
-      fprintf(stderr, "The area from %g to %g is : %25.16e\n", lowerLimit,upperLimit, total);
+      fprintf("%f \n",total)
+      // fprintf(stderr, "The area from %g to %g is : %25.16e\n", lowerLimit,upperLimit, total);
     }
   else
     { /* slaves only send */
