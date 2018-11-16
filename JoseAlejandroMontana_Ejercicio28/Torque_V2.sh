@@ -7,16 +7,22 @@
 module load anaconda/python2
 cd $PBS_O_WORKDIR
 mpic++ integrar.cpp -o Integra.x
-rm datos_*
+if [ -d Datos ]
+then
+    rm -r Datos
+    mkdir Datos
+    cd Tiempos
+else
+    mkdir Datos
+    cd Datos
+fi
+
 p=10
-mkdir Datos
-cd Datos
 for((ii=1;ii<=9;ii++))
 do
     mpirun -np 20 ../Integra.x $p > datos_$ii.txt 
     potencia=$(echo 10 $p  | awk '{printf "%5d\n",$1*$2}')
     p=$potencia
-    echo "hecho $ii"
 done
 cat datos_* > Datos.txt
 cd ..

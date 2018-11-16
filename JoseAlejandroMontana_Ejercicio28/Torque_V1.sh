@@ -7,10 +7,17 @@
 # module load anaconda/python2
 # cd $PBS_O_WORKDIR
 mpic++ integrar.cpp -o Integra.x
-rm datos_*
+if [ -d Datos ]
+then
+    rm -r Datos
+    mkdir Datos
+    cd Tiempos
+else
+    mkdir Datos
+    cd Datos
+fi
+
 p=10
-mkdir Datos
-cd Datos
 for((ii=1;ii<=9;ii++))
 do
     mpirun -np 2 ../Integra.x $p > datos_$ii.txt 
@@ -23,4 +30,3 @@ cd ..
 rm *.x
 python2  Plot_error.py Datos/Datos.txt
 
-# mpirun -np 2 Integra.x 100
