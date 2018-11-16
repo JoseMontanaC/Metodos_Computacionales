@@ -43,9 +43,7 @@ int main(int argc, char *argv[])
 	{
 	  lista[jj] = number(generator);
 	  punto += lista[jj];
-
 	}
-      
       heigth = punto*punto;
       area += heigth/(double)(N*size);
       // std::cout<<punto*punto<<"  "<<heigth<<"  "<< area<<std::endl;
