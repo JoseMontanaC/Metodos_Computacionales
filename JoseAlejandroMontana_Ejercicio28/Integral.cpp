@@ -31,11 +31,15 @@ int main(int argc, char *argv[])
   lower = lowerLimit + range*rank;
 
   area=0.0;
+  std::exponential_distribution<double> expon(Lambda);
   for (int ii = 0; ii < N; ++ii)
     {
-      punto = lower + ii*width + width/2.0;
+      punto = expon(generator);
       heigth = Part_function(punto);
-      area = area + width*heigth;
+      area += heigth/(double) (N*size);
+      // punto = lower + ii*width + width/2.0;
+      // heigth = Part_function(punto);
+      // area = area + width*heigth;
     }
 
   /* Collect info and print results */
@@ -48,7 +52,7 @@ int main(int argc, char *argv[])
 	  MPI_Recv(&area, 1, MPI_DOUBLE, src, tag, MPI_COMM_WORLD, &status);
 	  total += area;
 	}
-      fprintf(stderr, "The area from %g to %g is : %25.16e\n", lowerLimit, upperLimit, total);
+      fprintf(stderr, "The area from %g to infinity is : %25.16e\n", lowerLimit, total);
     }
   else
     { /* slaves only send */
@@ -102,7 +106,7 @@ int main(int argc, char *argv[])
 }
 
 
-double func_def(double x)
+double Part_function(double x)
 {
   return sin(x);
 }
