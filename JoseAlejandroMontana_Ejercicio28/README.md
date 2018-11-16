@@ -5,7 +5,7 @@ Al correr el archivo [Torque_V1.sh](./Torque_V1.sh)
 	```console
 	bash Torque_V1.sh
 	```
-Se compila el codigo [integrar.cpp](./integrar.cpp) usando el compilador de "mpic++", esto genera un ejecutable que se corre para una cantidad de puntos de ![ecuacion](https://latex.codecogs.com/gif.latex?N%3D%2010%2C%2010%5E%7B2%7D%2C%20%5Cdots%2C%2010%5E%7B10%7D), esto genera 10 archivos distintos que luego son unidos y se concatenan en el archivo (Datos.txt)[./Datos.txt].
+Se compila el codigo [integrar.cpp](./integrar.cpp) usando el compilador de "mpic++", esto genera un ejecutable que se corre para una cantidad de puntos de ![ecuacion](https://latex.codecogs.com/gif.latex?N%3D%2010%2C%2010%5E%7B2%7D%2C%20%5Cdots%2C%2010%5E%7B9%7D), esto genera 10 archivos distintos que luego son unidos y se concatenan en el archivo (Datos.txt)[./Datos.txt].
 
 Por ultimo el programa [Plot_error.py](./Plot_error.py] se encarga de graficar lo que que está en el archivo de (Datos.txt)[./Datos.txt].
 
