@@ -18,7 +18,7 @@ X=np.array(X)
 Y=np.array(Y)
 exact= 155.0/6.0
 error=np.abs(exact-Y)/exact * 100
-plt.figure(figsize=(7,4))
+plt.figure(figsize=(7,5))
 plt.xscale("log")
 plt.yscale("log")
 plt.plot(X,error,color="firebrick")
@@ -31,5 +31,4 @@ plt.savefig("Error.png")
 plt.tight_layout()
 plt.close()
 
-# plt.show()
 
