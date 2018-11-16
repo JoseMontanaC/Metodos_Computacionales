@@ -9,7 +9,8 @@ double exponential_dist(double x, double Lambda);
 void Metropolis(double *lista, int N,double Lambda);
 
 const double lowerLimit = 0.0;
-const double upperLimit = M_PI/2.0;
+// const double upperLimit = M_PI/2.0;
+const double upperLimit = 1.0;
 
 int main(int argc, char *argv[])
 {
