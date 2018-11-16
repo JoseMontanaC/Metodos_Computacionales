@@ -9,7 +9,7 @@
 mpic++ integrar.cpp -o Integra.x
 rm datos_*
 p=10
-for((ii=1;ii<=10;ii++))
+for((ii=1;ii<=9;ii++))
 do
     mpirun -np 2 Integra.x $p > datos_$ii.txt 
     potencia=$(echo 10 $p  | awk '{printf "%5d\n",$1*$2}')
