@@ -23,9 +23,9 @@ int main(int argc, char *argv[])
   double area, punto, heigth, width, total, range, lower;
 
   /* MPI setup */
-  // MPI_Init(&argc, &argv);
-  // MPI_Comm_size(MPI_COMM_WORLD, &size);
-  // MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  MPI_Init(&argc, &argv);
+  MPI_Comm_size(MPI_COMM_WORLD, &size);
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
   /* Adjust problem size for sub-process */
   range = (upperLimit - lowerLimit) / size;
