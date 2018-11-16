@@ -29,4 +29,3 @@ cd ..
 rm *.x
 python2  Plot_error.py Datos/Datos.txt
 
-# mpirun -np 2 Integra.x 100
