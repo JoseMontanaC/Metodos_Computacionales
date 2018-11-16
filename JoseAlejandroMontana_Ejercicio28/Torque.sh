@@ -6,17 +6,17 @@
 
 # module load anaconda/python2
 # cd $PBS_O_WORKDIR
-mpic++ integrar.cpp -o integra.x
+mpic++ integrar.cpp -o Integra.x
 rm datos_*
 p=10
 for((ii=1;ii<=7;ii++))
 do
-    mpirun -np 2 integra.x $p > datos_$ii.txt
+    mpirun -np 2 Integra.x $p > datos_$ii.txt
     potencia=$(echo 10 $p  | awk '{printf "%5d\n",$1*$2}')
-    p=$potencia
-    
+    p=$potencia   
 done
+rm *.x
 cat datos_* > Datos.txt
-# python2 
+python2  Plot_error.py Datos.txt
 
 # mpirun -np 2 Integra.x 100

@@ -15,8 +15,9 @@ plt.scatter(x,error,color="navy")
 plt.xlabel("Numero de puntos N")
 plt.ylabel("Porcentaje de error")
 plt.title("Error en funcion de la particion N")
+plt.savefig("Error.pdf")
 plt.tight_layout()
 plt.show()
-# plt.savefig("Histogram.pdf")
+
 # plt.show()
 
