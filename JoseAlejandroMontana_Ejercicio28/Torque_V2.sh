@@ -11,7 +11,7 @@ if [ -d Datos ]
 then
     rm -r Datos
     mkdir Datos
-    cd Tiempos
+    cd Datos
 else
     mkdir Datos
     cd Datos
