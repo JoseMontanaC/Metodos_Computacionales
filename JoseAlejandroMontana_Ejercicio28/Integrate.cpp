@@ -31,21 +31,23 @@ int main(int argc, char *argv[])
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
   // /* Adjust problem size for sub-process */
-  range = (upperLimit - lowerLimit) / size;
-  width = range /(double) N;
+  // range = (upperLimit - lowerLimit) / size;
+  // width = range /(double) N;
   // lower = lowerLimit + range*rank;
 
   area=0.0;
   std::uniform_real_distribution<double> number(lowerLimit,upperLimit);
-  
   for (int ii = 0; ii < N; ++ii)
     {
+      punto = 0.0;
       for(int jj=0; jj< exponente;++jj)
 	{
 	  lista[jj]= number(generator);
+	  // punto += number(generator);
 	}
       heigth = function_to_integrate(lista);
-      area += heigth*width;
+      // heigth = punto*punto;
+      area += heigth/(double)(N*size);   
     }
 
   /* Collect info and print results */
@@ -58,7 +60,7 @@ int main(int argc, char *argv[])
   	  MPI_Recv(&area, 1, MPI_DOUBLE, src, tag, MPI_COMM_WORLD, &status);
   	  total += area;
   	}
-      fprintf("%f \n",total)
+      fprintf(stderr,"%g \n",total);
       // fprintf(stderr, "The area from %g to %g is : %25.16e\n", lowerLimit,upperLimit, total);
     }
   else
