@@ -9,15 +9,18 @@
 mpic++ integrar.cpp -o Integra.x
 rm datos_*
 p=10
+mkdir Datos
+cd Datos
 for((ii=1;ii<=9;ii++))
 do
-    mpirun -np 2 Integra.x $p > datos_$ii.txt 
+    mpirun -np 2 ../Integra.x $p > datos_$ii.txt 
     potencia=$(echo 10 $p  | awk '{printf "%5d\n",$1*$2}')
     p=$potencia
     echo "hecho $ii"
 done
-rm *.x
 cat datos_* > Datos.txt
-python2  Plot_error.py Datos.txt
+cd ..
+rm *.x
+python2  Plot_error.py Datos/Datos.txt
 
 # mpirun -np 2 Integra.x 100
