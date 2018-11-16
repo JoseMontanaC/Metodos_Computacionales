@@ -4,14 +4,12 @@
 #include<random>
 #include "mpi.h"
 
-double func_def(double x);
-double function(double x, double mu, double sigma);
+double Part_function(double x);
 double exponential_dist(double x, double Lambda);
 void Metropolis(double *lista, int N,double Lambda);
-// void Met(double *lista, int N,double mu, double sigma);
-/* double Int_montecarlo(int size); */
+
 const double lowerLimit = 0.0;
-const double upperLimit = 1.0;
+const double upperLimit = M_PI/2.0;
 
 int main(int argc, char *argv[])
 {
@@ -19,7 +17,7 @@ int main(int argc, char *argv[])
   int dest, size, rank, tag;
   int N = atoi(argv[1]);
   double Lambda = 1.0;
-  // MPI_Status status;
+  MPI_Status status;
   double area, punto, heigth, width, total, range, lower;
 
   /* MPI setup */
@@ -36,16 +34,16 @@ int main(int argc, char *argv[])
   for (int ii = 0; ii < N; ++ii)
     {
       punto = lower + ii*width + width/2.0;
-      heigth = func_def(punto);
+      heigth = Part_function(punto);
       area = area + width*heigth;
     }
 
   /* Collect info and print results */
   tag = 0;
-  if (0 == processId)
+  if (0 == rank)
     { /* Master */
       total = area; 
-      for (src = 1; src < noProcesses; ++src)
+      for (int src = 1; src < size; ++src)
 	{
 	  MPI_Recv(&area, 1, MPI_DOUBLE, src, tag, MPI_COMM_WORLD, &status);
 	  total += area;
@@ -60,11 +58,13 @@ int main(int argc, char *argv[])
   
   /* finish */
   MPI_Finalize();
+
+  
   // std::exponential_distribution<double> exp(Lambda);
   // for(int i = 0; i<= N;i++)
   //   {
   //     // std::cout<< 1/(N-1)<<std::endl;
-  //     integral +=  func_def(exp(generator))/(double) N;
+  //     integral +=  Part_function(exp(generator))/(double) N;
   //     // std::cout<< func_def(distribution[i])/(double)  (N-1)<<"   "<<func_def(distribution[i])/(N-1)<<"  "<<distribution[i]<<std::endl;
       
   // //     std
@@ -108,11 +108,6 @@ double func_def(double x)
 }
 
 
-double function(double x, double mu, double sigma)
-{
-  double gauss = (1.0/(sqrt(2.0*M_PI*sigma*sigma)))*exp(-(x-mu)*(x-mu)/(2.0*sigma*sigma));
-  return gauss;
-}
 double exponential_dist(double x, double Lambda)
 {
   return Lambda*exp(-x*Lambda);
@@ -148,32 +143,3 @@ void Metropolis(double *lista, int N,double Lambda)
 	}
     }
 }
-// void Met(double *lista,int N,double mu, double sigma)
-// {
-//   std::mt19937 generator(1);
-//   std::uniform_real_distribution<double> number(0.0,1.0);
-//   std::normal_distribution<double> Noise(0.0, 1.0);
-//   double propuesta = 0.0;
-//   lista[0] = number(generator);
-//   // Monte Carlo method
-//   for(int ii=1 ;ii<N; ii++)
-//     {
-//       propuesta = lista[ii-1] + Noise(generator);
-//       double ratio = function(propuesta,mu,sigma)/function(lista[ii-1],mu,sigma);
-//       double r = std::min(1.0,ratio);
-//       double alpha = number(generator);
-      
-//       if(alpha < r)
-// 	{
-// 	  lista[ii] = propuesta;
-// 	  continue;
-// 	}
-      
-//       else
-// 	{
-// 	  lista[ii] = lista[ii-1];
-// 	  continue;
-// 	}
-//     }
-  
-// }
