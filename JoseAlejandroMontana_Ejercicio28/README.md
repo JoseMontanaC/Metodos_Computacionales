@@ -13,14 +13,15 @@ Por ultimo el programa [Plot_error.py](./Plot_error.py] se encarga de graficar l
 Resultados del programa
 =======================
 Este programa Calcula la siguiente integral:
-
-![equation](https://latex.codecogs.com/gif.latex?%5Cint_0%5E1dx_1%5Cint_0%5E1dx_2%20%5Cdots%20%5Cint_0%5E1dx_%7B10%7D%20%5Cleft%28%20x_1&plus;x_2&plus;%5Cdots&plus;x_%7B10%7D%5Cright%20%29%5E%7B2%7D)
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?%5Cint_0%5E1dx_1%5Cint_0%5E1dx_2%20%5Cdots%20%5Cint_0%5E1dx_%7B10%7D%20%5Cleft%28%20x_1&plus;x_2&plus;%5Cdots&plus;x_%7B10%7D%5Cright%20%29%5E%7B2%7D" alt="Ecuacion"/>
+</p>
 
 Por medio del método de integrales por Montecarlo.
 
 Al ver la gráficas [Grafica del error](https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio28/Error.pdf) se tiene que el método parece estar funcionando a la perfección y como es de esperarse, el porcentaje de error disminuye en función del numero de puntos utilizado.
 
 <p align="center">
-<img src="https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio28/Error.png" alt="Grafica de error">
+<img src="https://github.com/JoseMontanaC/Metodos_Computacionales/blob/master/JoseAlejandroMontana_Ejercicio28/Error.png" alt="Grafica de error"/>
 </p>
 
