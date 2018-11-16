@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
   int N = atoi(argv[1]);
   double Lambda = 1.0;
   // MPI_Status status;
-  double area, at, heigth, width, total, range, lower;
+  double area, punto, heigth, width, total, range, lower;
 
   /* MPI setup */
   // MPI_Init(&argc, &argv);
@@ -33,6 +33,33 @@ int main(int argc, char *argv[])
   lower = lowerLimit + range*rank;
 
   area=0.0;
+  for (int ii = 0; ii < N; ++ii)
+    {
+      punto = lower + ii*width + width/2.0;
+      heigth = func_def(punto);
+      area = area + width*heigth;
+    }
+
+  /* Collect info and print results */
+  tag = 0;
+  if (0 == processId)
+    { /* Master */
+      total = area; 
+      for (src = 1; src < noProcesses; ++src)
+	{
+	  MPI_Recv(&area, 1, MPI_DOUBLE, src, tag, MPI_COMM_WORLD, &status);
+	  total += area;
+	}
+      fprintf(stderr, "The area from %g to %g is : %25.16e\n", lowerLimit, upperLimit, total);
+    }
+  else
+    { /* slaves only send */
+      dest = 0; 
+      MPI_Send(&area, 1, MPI_DOUBLE, dest, tag, MPI_COMM_WORLD);
+    } 
+  
+  /* finish */
+  MPI_Finalize();
   // std::exponential_distribution<double> exp(Lambda);
   // for(int i = 0; i<= N;i++)
   //   {
