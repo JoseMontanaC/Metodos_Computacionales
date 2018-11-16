@@ -7,7 +7,7 @@
 double Part_function(double x);
 double exponential_dist(double x, double Lambda);
 void Metropolis(double *lista, int N,double Lambda);
-
+double function_to_integrate(double *x,int size);
 const double lowerLimit = 0.0;
 // const double upperLimit = M_PI/2.0;
 const double upperLimit = 1.0;
@@ -20,7 +20,14 @@ int main(int argc, char *argv[])
   double Lambda = 1.0;
   MPI_Status status;
   double area, punto, heigth, width, total, range, lower;
-
+  double lista[10];
+  
+  // Inicializar
+  for (int ii = 0; ii < N_prime; ii++)
+    {
+      lista[ii]=0.0; 
+    }
+  
   /* MPI setup */
   MPI_Init(&argc, &argv);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -32,7 +39,8 @@ int main(int argc, char *argv[])
   lower = lowerLimit + range*rank;
 
   area=0.0;
-  std::exponential_distribution<double> expon(Lambda);
+  // std::exponential_distribution<double> expon(Lambda);
+  std::uniform_real_distribution<double> number(lowerLimit,upperLimit);
   for (int ii = 0; ii < N; ++ii)
     {
       punto = expon(generator);
@@ -109,10 +117,20 @@ int main(int argc, char *argv[])
 
 double Part_function(double x)
 {
+  
   return sin(x);
 }
 
-
+double function_to_integrate(double *x,int size)
+{
+  double cuadratic=0.0;
+  for(int ii=0; ii<size;ii++)
+    {
+      cuadratic += x[ii];
+    }
+  cuadratic = cuadratic*cuadratic;
+  return cuadratic;
+}
 double exponential_dist(double x, double Lambda)
 {
   return Lambda*exp(-x*Lambda);
