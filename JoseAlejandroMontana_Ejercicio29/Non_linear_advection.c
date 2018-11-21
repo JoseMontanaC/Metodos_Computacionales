@@ -50,20 +50,24 @@ int main(int argc, char ** argv)
  
   
   /* Se ponen las mismas condiciones de contorno */
-  u_final[n-1]=u[n-1];
-  u_final[0]=u[0];
-  for(int ii= 0; ii<N_t ;ii++)
-    {
-      Flux(F,u,n);
-      for(int jj = 1; jj< n-1;jj++)
-	{
-	  u_final[jj] = 0.5*(u[jj+1] +u[jj-1])
-	    - 0.5*(delta_t/delta_x)*(F[jj+1]-F[jj-1]);
-	  /* u_final[jj] -= 0.5*(delta_t/delta_x)*(F[jj+1]-F[jj-1]); */
-	  u[jj] = u_final[jj];
-	  /* printf("%.5f terminacon %.5f \n",u[jj],u_final[jj]); */
-	}
-    }
+  /* u_final[n-1]=u[n-1]; */
+  /* u_final[0]=u[0]; */
+  /* for(int ii= 0; ii<N_t ;ii++) */
+  /*   { */
+  /*     Flux(F,u,n); */
+  /*     for(int jj = 1; jj< n-1;jj++) */
+  /* 	{ */
+  /* 	  u_final[jj] = 0.5*(u[jj+1] +u[jj-1]) */
+  /* 	    - 0.5*(delta_t/delta_x)*(F[jj+1]-F[jj-1]); */
+  /* 	  /\* u_final[jj] -= 0.5*(delta_t/delta_x)*(F[jj+1]-F[jj-1]); *\/ */
+  /* 	  u[jj] = u_final[jj]; */
+  /* 	  /\* printf("%.5f terminacon %.5f \n",u[jj],u_final[jj]); *\/ */
+  /* 	} */
+  /*   } */
+
+  
+  Lax(u_final, u,F,t_max, delta_t,  delta_x, n);
+  
   /* Se escribe el estado final */
   
   if(!(out = fopen("Final.txt", "w")))
@@ -115,6 +119,7 @@ void Start_u(double *u,double *x, int n)
 
 void Lax(double *u_final, double *u, double *F, double t_max, double delta_t, double delta_x,int n)
 {
+  /* Se ponen las mismas condiciones de contorno */
   int N_t = t_max/delta_t;
   u_final[n-1]=u[n-1];
   u_final[0]=u[0];
