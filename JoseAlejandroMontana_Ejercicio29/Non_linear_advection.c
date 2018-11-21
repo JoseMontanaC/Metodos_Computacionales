@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 void Flux(double *flux,double *u,int n);
+
 /* void Lax(double *u,double t_max, double delta_t, double delta_x); */
 int main(int argc, char ** argv)
 {
+  /* Archivo para escribir */
+  FILE *out;
   /* Inicializar */
   int L = 4;
   double delta_x = 0.05;
@@ -23,20 +27,24 @@ int main(int argc, char ** argv)
       if(x[ii]<2.0)
 	{
 	  u[ii] = 1.0;
-	  /* aux[ii]=u[ii]; */
-	  
-	  /* flux[ii] = 0.5*u[ii]*u[ii]; */
-	  /* printf("%.5f \n",u[ii]); */
 	}
       else
 	{
 	  u[ii] = 0.0;
-	  /* aux[ii]=u[ii]; */
-	  /* flux[ii] = 0.5*u[ii]*u[ii]; */
-	  /* printf("%.5f \n",u[ii]); */
 	}
     }
+  
+  /* Se escribe el archivo con las condiciones iniciales */
+  
+  if(!(out = fopen("Inicial.txt", "w"))){
+    fprintf(stderr, "Problema abriendo el archivo\n");
+    exit(1);
+  }
+  for(int i=0;i<n;i++){
+    fprintf(out, "%.5f  %.5f\n", x[i],u[i]);
+  }
 
+  
   /* Se definen la variables a utilizar para el metodo */
   double t_max=0.45, delta_t=0.015;
   int N_t = t_max/delta_t;
@@ -60,10 +68,19 @@ int main(int argc, char ** argv)
 	  /* printf("%.5f terminacon %.5f \n",u[jj],u_final[jj]); */
 	}
     }
+  /* Se escribe el estado final */
+
+  if(!(out = fopen("Final.txt", "w"))){
+    fprintf(stderr, "Problema abriendo el archivo\n");
+    exit(1);
+  }
+  /* for(int i=0;i<n;i++){ */
+  /*   fprintf(out, "%.5f  %.5f\n", x[i],u[i]); */
+  /* } */
   
-  for(int i = 0;i<n i++)
+  for(int i = 0;i<n; i++)
     {
-      printf("%.5f  %.5f \n",x[i],u_final[i]);
+      fprintf(out,"%.5f  %.5f \n",x[i],u_final[i]);
     }
   
   free(u);
