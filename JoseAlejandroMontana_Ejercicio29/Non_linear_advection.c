@@ -31,7 +31,7 @@ int main(int argc, char ** argv)
   
   /* Se escribe el archivo con las condiciones iniciales */
   
-  if(!(out = fopen("Inicial.txt", "w")))
+  if(!(out = fopen("Estado_inicial.txt", "w")))
     {
       fprintf(stderr, "Problema abriendo el archivo\n");
       exit(1);
@@ -44,46 +44,30 @@ int main(int argc, char ** argv)
   
   /* Se definen la variables a utilizar para el metodo */
 
-  double t_max=0.5, delta_t=0.5*delta_x;
-  int N_t = t_max/delta_t;
-  
- 
-  
-  /* Se ponen las mismas condiciones de contorno */
-  /* u_final[n-1]=u[n-1]; */
-  /* u_final[0]=u[0]; */
-  /* for(int ii= 0; ii<N_t ;ii++) */
-  /*   { */
-  /*     Flux(F,u,n); */
-  /*     for(int jj = 1; jj< n-1;jj++) */
-  /* 	{ */
-  /* 	  u_final[jj] = 0.5*(u[jj+1] +u[jj-1]) */
-  /* 	    - 0.5*(delta_t/delta_x)*(F[jj+1]-F[jj-1]); */
-  /* 	  /\* u_final[jj] -= 0.5*(delta_t/delta_x)*(F[jj+1]-F[jj-1]); *\/ */
-  /* 	  u[jj] = u_final[jj]; */
-  /* 	  /\* printf("%.5f terminacon %.5f \n",u[jj],u_final[jj]); *\/ */
-  /* 	} */
-  /*   } */
-
-  
-  Lax(u_final, u,F,t_max, delta_t,  delta_x, n);
-  
-  /* Se escribe el estado final */
-  
-  if(!(out = fopen("Final.txt", "w")))
+  double t_max=0;
+  double delta_t = 0.5*delta_x;
+  for(int t = 1; t<= 10; t++)
     {
-      fprintf(stderr, "Problema abriendo el archivo\n");
-      exit(1);
+      t_max = 0.5*t;
+      int N_t = t_max/delta_t;
+      Start_u(u,x,n);
+      Lax(u_final, u,F,t_max, delta_t,  delta_x, n);
+      
+      /* Se escribe el estado final */
+      sprintf(filename, "Estado_%d.txt", t);
+      if(!(out = fopen(filename, "w")))
+	{
+	  fprintf(stderr, "Problema abriendo el archivo\n");
+	  exit(1);
+	}
+      
+      for(int i = 0;i<n; i++)
+	{
+	  fprintf(out,"%.5f  %.5f \n",x[i],u_final[i]);
+	}
+     
     }
-  /* for(int i=0;i<n;i++){ */
-  /*   fprintf(out, "%.5f  %.5f\n", x[i],u[i]); */
-  /* } */
-  
-  for(int i = 0;i<n; i++)
-    {
-      fprintf(out,"%.5f  %.5f \n",x[i],u_final[i]);
-    }
-  
+  fclose(out);
   free(u);
   free(F);
   free(x);
