@@ -51,7 +51,7 @@ double *reserva(int n_points){
     printf("malloc problem\n");
     exit(1);
 }
-  #pragma omp parallel for
+
   for(i=0;i<n_points;i++){
     x[i] = 0.0;
   }
