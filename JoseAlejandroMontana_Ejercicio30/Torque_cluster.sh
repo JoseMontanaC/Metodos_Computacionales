@@ -16,7 +16,7 @@ rm *.txt
 ../Non_linear.x
 cd ..
 rm *.x
-gcc Non_linear_advection.c -o Non_linear.x
+gcc -std=c99 Non_linear_advection.c -o Non_linear.x
 rm - r Serial_Non_linear
 mkdir Serial_Non_linear
 cd Serial_Non_linear
