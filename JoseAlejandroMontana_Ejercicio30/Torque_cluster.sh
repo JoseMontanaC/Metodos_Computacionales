@@ -8,7 +8,7 @@ module load anaconda/python2
 module load gcc/4.9.4 
 export OMP_NUM_THREADS=20
 cd $PBS_O_WORKDIR
-gcc -fopenmp Non_linear_advection.c -o Non_linear.x
+gcc -std=c99 -fopenmp Non_linear_advection.c -o Non_linear.x
 rm -r Parallel_Non_linear
 mkdir Parallel_Non_linear
 cd Parallel_Non_linear
