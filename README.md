@@ -1,6 +1,6 @@
 Repositorio con los códigos en C y C++
 ======================================
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JoseMontanaC/JoseAlejandroMontana_Final/master?urlpath=lab)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JoseMontanaC/Metodos_Computacionales/master?urlpath=lab)
 
 
 Acá se presentan las soluciones a los ejercicios propuestos en clase.
