@@ -1,5 +1,5 @@
-import matplotlib
-matplotlib.use("Agg")
+# import matplotlib
+# matplotlib.use("Agg")
 import numpy as np
 import matplotlib.pylab as plt
 archivo = np.genfromtxt("./Parallel_Non_linear/Estado_inicial.txt")
@@ -22,5 +22,6 @@ X = archivo[:,0]
 U = archivo[:,1]
 plt.plot(X,U,label="Serial",alpha=0.5)
 plt.legend()
-plt.savefig("Nonlinear_comparacion.pdf")
-plt.close()
+# plt.savefig("Nonlinear_comparacion.pdf")
+# plt.close()
+plt.show()
